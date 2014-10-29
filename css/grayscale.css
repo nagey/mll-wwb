@@ -131,48 +131,65 @@ a:focus {
     }
 }
 
-.intro {
-    display: table;
-    width: 100%;
-    height: auto;
-    padding: 100px 0;
-    text-align: center;
-    color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+.photo-section{ 
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
-.intro .intro-body {
+.intro {
+  background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+
+}
+
+.photo-section .photo-body {
     display: table-cell;
     vertical-align: middle;
 }
 
-.intro .intro-body .brand-heading {
+.brand-heading, .photo-section h2 {
     font-size: 40px;
 }
 
-.intro .intro-body .intro-text {
-    font-size: 18px;
+.intro .intro-text {
 		width:740px;
 }
 
+.intro-text, .mary-text, .bill-text {
+  font-size: 18px;
+}
+
+.mary-text, .bill-text {
+	font-size: 26px;
+}
+
+
 @media(min-width:767px) {
-    .intro {
+    .intro, .photo-section {
         height: 100%;
         padding: 0;
     }
 
-    .intro .intro-body .brand-heading {
+    .brand-heading, .photo-section h2 {
         font-size: 100px;
     }
 
-    .intro .intro-body .intro-text {
+		.intro-text {
         font-size: 25px;
     }
+		
+		.mary-text, .bill-text {
+			font-size: 48px;
+		}
+
 }
 
 .btn-circle {
