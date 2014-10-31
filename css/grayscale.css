@@ -290,6 +290,10 @@ a:focus {
 	background: url(../img/levee-bg.jpg) no-repeat center center scroll;
 }
 
+.energy-section {
+	background: url(../img/energy-bg.jpg) no-repeat center center scroll;
+}
+
 .photo-section {
 	width:100%;
 	padding: 50px 0 50px;
