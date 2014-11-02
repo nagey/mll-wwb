@@ -131,7 +131,7 @@ a:focus {
     }
 }
 
-.photo-section{ 
+.photo-section, .photo-background{ 
   display: table;
   width: 100%;
   height: auto;
@@ -294,6 +294,12 @@ a:focus {
 	background: url(../img/energy-bg.jpg) no-repeat center center scroll;
 }
 
+.mary-section {
+    background: url(../img/mary-bg.jpg) no-repeat center center scroll;
+}
+.mary-section h2 {width:630px;}
+
+
 .photo-section {
 	width:100%;
 	padding: 50px 0 50px;
@@ -305,19 +311,7 @@ a:focus {
 	-o-background-size: cover;
 }
 
-.mary-section {
-    width: 100%;
-    padding: 50px 0;
-    color: #fff;
-    background: url(../img/mary-bg.jpg) no-repeat center center scroll;
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
 
-.mary-section h2 {width:630px;}
 
 #withmary {
 	width: 100%;
