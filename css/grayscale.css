@@ -286,12 +286,20 @@ a:focus {
 	background: url(../img/vets-bg.jpg) no-repeat center center scroll;
 }
 
+.seniors-section {
+	background: url(../img/seniors-bg.jpg) no-repeat center center scroll;
+}
+
 .levee-section {
 	background: url(../img/levee-bg.jpg) no-repeat center center scroll;
 }
 
 .energy-section {
 	background: url(../img/energy-bg.jpg) no-repeat center center scroll;
+}
+
+.education-section {
+	background: url(../img/education-bg.jpg) no-repeat center center scroll;
 }
 
 .mary-section {
@@ -331,7 +339,7 @@ a:focus {
 
 @media(min-width:767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 100px;
     }
 
     .download-section {
