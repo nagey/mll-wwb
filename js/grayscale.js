@@ -39,6 +39,50 @@ function encode (str) {
 }
 
 $(document).ready(function () {
+  
+  var panels = [];
+  $("section").each(function () {
+    panels.push($(this));
+  });
+
+  var panelCursor = 0;
+  var panelTimeout = 9000;
+  var timeoutHandle;
+  var stackDepth = 0;
+  var scrollNext = function () {
+    
+    var advanceCursor = function () {
+      panelCursor++;
+      if (panelCursor >= panels.length) {
+        panelCursor = 0;
+      }
+    };
+    
+    if (($(document).scrollTop() > 20) && (Math.abs($(document).scrollTop() - panels[panelCursor].offset().top) > 20)) {
+      advanceCursor();
+      stackDepth++;
+      if (stackDepth >= panels.length) {
+        stackDepth = 0;
+        timeoutHandle = setTimeout(scrollNext, panelTimeout);
+      }
+      else {
+        scrollNext();
+      }
+    }
+    else {
+      if ($(document).scrollTop() < 20) {
+        panelCursor = 0;
+      }
+      else {
+        advanceCursor();
+      }
+      $('html, body').stop().animate({
+          scrollTop: $(panels[panelCursor]).offset().top
+      }, 1500, 'easeInOutExpo');
+      timeoutHandle = setTimeout(scrollNext, panelTimeout);
+    }
+  }
+  timeoutHandle = setTimeout(scrollNext, panelTimeout);
 
   $("a.tweetit").each(function (e) {
     var href= encode($(this).attr("href"));
