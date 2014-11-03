@@ -110,6 +110,10 @@ a:focus {
     background-color: rgba(255,255,255,.3);
 }
 
+.dropdown-menu a, .dropdown-menu {
+  background-color: #bbb;	
+}
+
 @media(min-width:767px) {
     .navbar {
         padding: 20px 0;
@@ -143,11 +147,6 @@ a:focus {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-}
-
-.intro {
-  background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-
 }
 
 .photo-section .photo-body {
@@ -286,7 +285,7 @@ a:focus {
 	background: url(../img/onepercent-bg.jpg) no-repeat center center scroll;
 }
 
-.vets-section {
+.vets-section,.veterans-section {
 	background: url(../img/vets-bg.jpg) no-repeat center center scroll;
 }
 
@@ -306,10 +305,32 @@ a:focus {
 	background: url(../img/education-bg.jpg) no-repeat center center scroll;
 }
 
-.mary-section {
-    background: url(../img/mary-bg.jpg) no-repeat center center scroll;
+.mary-levee {
+    background: url(../img/mary-levee-bg.jpg) no-repeat center center scroll;
 }
-.mary-section h2 {width:630px;}
+
+.mary-women {
+    background: url(../img/mary-women-bg.jpg) no-repeat center center scroll;
+}
+
+.mary-students {
+    background: url(../img/mary-students-bg.jpg) no-repeat center center scroll;
+}
+
+.mary-oil-and-gas {
+    background: url(../img/mary-oil-and-gas-bg.jpg) no-repeat center center scroll;
+}
+
+.mary-seniors {
+    background: url(../img/mary-seniors-bg.jpg) no-repeat center center scroll;
+}
+
+.mary-veterans {
+    background: url(../img/mary-veterans-bg.jpg) no-repeat center center scroll;
+}
+
+
+/*.mary-section h2 {width:630px;}*/
 
 
 .photo-section {
