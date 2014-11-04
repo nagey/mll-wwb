@@ -158,9 +158,6 @@ a:focus {
     font-size: 40px;
 }
 
-.intro .intro-text {
-		width:740px;
-}
 
 .intro-text, .mary-text, .bill-text {
   font-size: 18px;
@@ -170,8 +167,15 @@ a:focus {
 	font-size: 26px;
 }
 
+.intro {
+	padding-top:100px;
+}
 
 @media(min-width:767px) {
+		.intro .intro-text {
+				width:740px;
+		}
+
     .intro, .photo-section {
         height: 100%;
         padding: 0;
@@ -345,7 +349,7 @@ a:focus {
 
 .photo-section {
 	width:100%;
-	padding: 50px 0 50px;
+	padding: 75px 0 50px;
 	color: #fff;
 	background-color: #000;
 	-webkit-background-size: cover;
@@ -418,7 +422,7 @@ ul.banner-social-buttons {
 
 @media(max-width:767px) {
     ul.banner-social-buttons li {
-        display: block;
+        /*display: block;*/
         margin-bottom: 20px;
         padding: 0;
     }
