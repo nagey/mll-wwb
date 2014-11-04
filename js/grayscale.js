@@ -40,6 +40,8 @@ function encode (str) {
 
 $(document).ready(function () {
   
+  var isMobile = $(".navbar-nav>li>a").attr("padding-top") === "10px"
+  
   var panels = [];
   $("section").each(function () {
     panels.push($(this));
@@ -82,7 +84,12 @@ $(document).ready(function () {
       timeoutHandle = setTimeout(scrollNext, panelTimeout);
     }
   }
-  timeoutHandle = setTimeout(scrollNext, panelTimeout);
+  var windowWidth = window.screen.width < window.outerWidth ?
+                    window.screen.width : window.outerWidth;
+  var mobile = windowWidth < 768;
+  if (!mobile) {
+    timeoutHandle = setTimeout(scrollNext, panelTimeout);
+  }
 
   $("a.tweetit").each(function (e) {
     var href= encode($(this).attr("href"));
