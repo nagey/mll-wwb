@@ -98,6 +98,27 @@ $(document).ready(function () {
   $("a.popup").each( function (e) {
     var href = $(this).attr("href");
     $(this).attr("href", 'javascript:window.open("'+href+'", "", "toolbar=no, scrollbars=no, resizable=no, width=600, height=280");');
-
   });
+  
+  $("#donation-amount").focus(function () {
+    if ($(this).val() === "5") {
+      $(this).val("");
+    }
+  });
+  
+  $("#donation-amount").blur(function () {
+    var value = parseInt($(this).val().replace(/,/g, ''));
+      console.log("foo");
+      console.log(value);
+    if ((value <= 0) || (isNaN(value))) {
+      $(this).val("5");
+    }
+    else if (value > 2600) {
+      $(this).val("2600");
+    }
+    else {
+      $(this).val(value);
+    }
+  });
+  
 });
