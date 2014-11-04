@@ -372,7 +372,7 @@ a:focus {
   -o-background-size: cover;
 }
 
-#paidfor {background:#fff; width:400px; margin: 0 auto; padding: 5px 5px 5px 5px; margin-bottom:5px;}
+#paidfor {background:#fff; width:360px; margin: 0 auto; padding: 5px 5px 5px 5px; margin-bottom:5px;}
 
 #paidfor p { border: 1px solid black; color:#000; margin: 5px 5px 5px 5px;}
 
