@@ -332,9 +332,10 @@ a:focus {
 
 /* Donate Form */
 .donate input {background-color:#999; border:none; width:125px; font-size:48px; text-align:right;}
-.donate ol { list-style:none;}
+.donate ol { list-style:none; }
 .donate ol li {display: inline;}
-.donate .dollahbill {font-size:48px;}
+.donate fieldset {display: inline; background-color:#999;}
+.donate .dollahbill {font-size:48px; }
 .donate button {display:block; margin-top:20px;}
 .donate {margin-bottom: 50px;}
 
