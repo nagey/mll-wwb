@@ -421,15 +421,19 @@ ul.banner-social-buttons {
 }
 
 @media(max-width:767px) {
-    ul.banner-social-buttons li {
-        /*display: block;*/
+
+   ul.banner-social-buttons li {
+				display:block;
         margin-bottom: 20px;
         padding: 0;
     }
-
+		
     ul.banner-social-buttons li:last-child {
         margin-bottom: 0;
     }
+		
+		ul.banner-social-buttons li.donate {display: inline-block;}
+		ul.banner-social-buttons li ol li {display: inline;}
 }
 
 footer {
