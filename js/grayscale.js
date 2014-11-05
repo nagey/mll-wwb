@@ -9,6 +9,7 @@ var gaTrack = function (category, action, label, value) {
   if ((typeof ga) === "function") {
     ga("send", "event", category, action, label, value);
   }
+  console.log("Category: "+category+", Action: "+action+", Label: "+label+", Value: "+value);
 }
 
 var getSectionId = function (element) {
@@ -169,8 +170,10 @@ $(document).ready(function () {
     gaTrack("donation", "blur", location.pathname, $(this).val());
   });
   
-  $("#donatebutton").click(function () {
+  $(".donatebutton button").click(function (event) {
+    event.preventDefault();
     gaTrack("donation", "submit", location.pathname, $("#donation-amount").val());
+    $(".donate form").submit();
   });
   
 });
