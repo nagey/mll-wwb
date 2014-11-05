@@ -42,25 +42,31 @@ $(function() {
     $('header a.page-scroll, section a.page-scroll').bind('click', function (event) {
       var $anchor = $(this);
       var target = $anchor.attr('href').substr(1);
-      gaTrack("scrolling", "click", target);
+      gaTrack("navigate", "scroll", target);
     });
 
     $('ul.nav a.page-scroll').bind('click', function (event) {
       var $anchor = $(this);
-      gaTrack("nav-bar", "click", getSectionId($anchor));
+      gaTrack("navigate", "click_nav", getSectionId($anchor));
     });
     
-    $('a.tweetit').bind('click', function (event) {
+    $('ul.banner-social-buttons li a').bind('click', function (event) {
+      var cat, act;
+      if ($(this).hasClass("tweetit")) {
+        cat = "twitter";
+        act = "share";
+      }
+      else if ($(this).hasClass("fbit")) {
+        cat = "facebook";
+        act = "share";
+      }
+      else {
+        cat = "navigate";
+        act = "click_page";
+      }
       var $anchor = $(this);
-      gaTrack("twitter", "share", getSectionId($anchor));
+      gaTrack(cat, act, getSectionId($anchor));
     });
-    
-    $('a.fbit').bind('click', function (event) {
-      var $anchor = $(this);
-      var target = $anchor.attr('href').substr(1);
-      gaTrack("facebook", "share", target);
-    });
-
 
 });
 
