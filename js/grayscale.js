@@ -5,9 +5,9 @@
  */
 
 
-var gaTrack = function (category, action, label) {
+var gaTrack = function (category, action, label, value) {
   if ((typeof ga) === "function") {
-    ga("send", "event", category, action, label);
+    ga("send", "event", category, action, label, value);
   }
 }
 
@@ -149,6 +149,7 @@ $(document).ready(function () {
   });
   
   $("#donation-amount").focus(function () {
+    gaTrack("donation", "focus", location.pathname);
     if ($(this).val() === "5") {
       $(this).val("");
     }
@@ -156,8 +157,6 @@ $(document).ready(function () {
   
   $("#donation-amount").blur(function () {
     var value = parseInt($(this).val().replace(/,/g, ''));
-      console.log("foo");
-      console.log(value);
     if ((value <= 0) || (isNaN(value))) {
       $(this).val("5");
     }
@@ -167,6 +166,11 @@ $(document).ready(function () {
     else {
       $(this).val(value);
     }
+    gaTrack("donation", "blur", location.pathname. $(this).val());
+  });
+  
+  $("#donatebutton").click(function () {
+    gaTrack("donation", "submit", location.pathname, $("#donation-amount").val());
   });
   
 });
