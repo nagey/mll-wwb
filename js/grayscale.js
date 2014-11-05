@@ -11,6 +11,14 @@ var gaTrack = function (category, action, label) {
   }
 }
 
+var getSectionId = function (element) {
+  if (element.prop("tagName") == "SECTION") {
+    return element.attr("id")
+  }
+  return getSectionId(element.parent());
+}
+
+
 // jQuery to collapse the navbar on scroll
 $(window).scroll(function() {
     if ($(".navbar").offset().top > 50) {
@@ -38,14 +46,12 @@ $(function() {
 
     $('ul.nav a.page-scroll').bind('click', function (event) {
       var $anchor = $(this);
-      var target = $anchor.attr('href').substr(1);
-      gaTrack("nav-bar", "click", target);
+      gaTrack("nav-bar", "click", getSectionId($anchor));
     });
     
     $('a.tweetit').bind('click', function (event) {
       var $anchor = $(this);
-      var target = $anchor.attr('href').substr(1);
-      gaTrack("twitter", "share", target);
+      gaTrack("twitter", "share", getSectionId($anchor));
     });
     
     $('a.fbit').bind('click', function (event) {
