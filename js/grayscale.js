@@ -47,7 +47,8 @@ $(function() {
 
     $('ul.nav a.page-scroll').bind('click', function (event) {
       var $anchor = $(this);
-      gaTrack("navigate", "click_nav", getSectionId($anchor));
+      var target = $anchor.attr('href').substr(1);
+      gaTrack("navigate", "click_nav", target);
     });
     
     $('ul.banner-social-buttons li a').bind('click', function (event) {
