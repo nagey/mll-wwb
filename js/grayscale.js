@@ -166,7 +166,7 @@ $(document).ready(function () {
     else {
       $(this).val(value);
     }
-    gaTrack("donation", "blur", location.pathname. $(this).val());
+    gaTrack("donation", "blur", location.pathname, $(this).val());
   });
   
   $("#donatebutton").click(function () {
