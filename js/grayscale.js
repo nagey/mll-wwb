@@ -4,6 +4,13 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+
+var gaTrack = function (category, action, label) {
+  if ((typeof ga) === "function") {
+    ga("send", "event", category, action, label);
+  }
+}
+
 // jQuery to collapse the navbar on scroll
 $(window).scroll(function() {
     if ($(".navbar").offset().top > 50) {
@@ -22,6 +29,32 @@ $(function() {
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
+    
+    $('header a.page-scroll, section a.page-scroll').bind('click', function (event) {
+      var $anchor = $(this);
+      var target = $anchor.attr('href').substr(1);
+      gaTrack("scrolling", "click", target);
+    });
+
+    $('ul.nav a.page-scroll').bind('click', function (event) {
+      var $anchor = $(this);
+      var target = $anchor.attr('href').substr(1);
+      gaTrack("nav-bar", "click", target);
+    });
+    
+    $('a.tweetit').bind('click', function (event) {
+      var $anchor = $(this);
+      var target = $anchor.attr('href').substr(1);
+      gaTrack("twitter", "share", target);
+    });
+    
+    $('a.fbit').bind('click', function (event) {
+      var $anchor = $(this);
+      var target = $anchor.attr('href').substr(1);
+      gaTrack("facebook", "share", target);
+    });
+
+
 });
 
 // Closes the Responsive Menu on Menu Item Click
@@ -81,6 +114,8 @@ $(document).ready(function () {
       $('html, body').stop().animate({
           scrollTop: $(panels[panelCursor]).offset().top
       }, 1500, 'easeInOutExpo');
+      var target = $(panels[panelCursor]).attr("id");
+      gaTrack("scrolling", "auto", {"nonInteraction": 1, "label": target });
       timeoutHandle = setTimeout(scrollNext, panelTimeout);
     }
   }
