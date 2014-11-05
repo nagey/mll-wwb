@@ -5,6 +5,11 @@
  */
 
 
+
+var encode = function (str) {
+  return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, "%2A");
+}
+
 var gaTrack = function (category, action, label, value) {
   if ((typeof ga) === "function") {
     ga("send", "event", category, action, label, value);
@@ -18,6 +23,8 @@ var getSectionId = function (element) {
   }
   return getSectionId(element.parent());
 }
+
+var siteUrl = encode("http://wherewasbill.com");
 
 
 // jQuery to collapse the navbar on scroll
@@ -81,9 +88,6 @@ function init() {
 
 }
 
-function encode (str) {
-  return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, "%2A");
-}
 
 $(document).ready(function () {
   
@@ -141,14 +145,14 @@ $(document).ready(function () {
   }
 
   $("a.tweetit").each(function (e) {
-    var href= encode($(this).attr("href"));
+    var href= encode($(this).attr("href").substr(1));
     var tweet = encode($(this).attr("data-tweet"));
-    $(this).attr("href","https://twitter.com/intent/tweet?via=wherewasbill&related=marylandrieu,wherewasbill,senlandrieu&text="+tweet+"&url="+href);
+    $(this).attr("href","https://twitter.com/intent/tweet?via=wherewasbill&related=marylandrieu,wherewasbill,senlandrieu&text="+tweet+"&url="+siteUrl+href);
   });
 
   $("a.fbit").each(function (e) {
-    var href= $(this).attr("href");
-    $(this).attr("href","https://www.facebook.com/sharer/sharer.php?u="+href);
+    var href= encode($(this).attr("href").substr(1));
+    $(this).attr("href","https://www.facebook.com/sharer/sharer.php?u="+siteUrl+href);
   });
 
   $("a.popup").each( function (e) {
