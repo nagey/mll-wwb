@@ -133,7 +133,7 @@ $(document).ready(function () {
           scrollTop: $(panels[panelCursor]).offset().top
       }, 1500, 'easeInOutExpo');
       var target = $(panels[panelCursor]).attr("id");
-      gaTrack("scrolling", "auto", {"nonInteraction": 1, "label": target });
+      gaTrack("scrolling", "auto", target, {"nonInteraction": 1});
       timeoutHandle = setTimeout(scrollNext, panelTimeout);
     }
   }
