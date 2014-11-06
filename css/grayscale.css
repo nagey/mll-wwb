@@ -114,6 +114,8 @@ a:focus {
   background-color: #bbb;	
 }
 
+.donate-nav { background-color:#f00;}
+
 @media(min-width:767px) {
     .navbar {
         padding: 20px 0;

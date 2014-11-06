@@ -52,7 +52,7 @@ $(function() {
       gaTrack("navigate", "scroll", target);
     });
 
-    $('ul.nav a.page-scroll').bind('click', function (event) {
+    $('ul.nav a.page-scroll, a.issue-link').bind('click', function (event) {
       var $anchor = $(this);
       var target = $anchor.attr('href').substr(1);
       gaTrack("navigate", "click_nav", target);
