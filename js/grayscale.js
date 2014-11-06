@@ -99,7 +99,7 @@ $(document).ready(function () {
   });
 
   var panelCursor = 0;
-  var panelTimeout = 25000;
+  var panelTimeout = 14000;
   var timeoutHandle;
   var stackDepth = 0;
   var scrollNext = function () {
