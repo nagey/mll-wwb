@@ -102,6 +102,11 @@ $(document).ready(function () {
   var panelTimeout = 14000;
   var timeoutHandle;
   var stackDepth = 0;
+  
+  $("a").click(function () {
+    clearTimeout(timeoutHandle);
+  });
+  
   var scrollNext = function () {
     
     var advanceCursor = function () {
