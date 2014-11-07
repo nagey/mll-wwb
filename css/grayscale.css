@@ -342,7 +342,8 @@ a:focus {
 .donate ol li {display: inline;}
 .donate fieldset {display: inline; background-color:#999;}
 .donate .dollahbill {font-size:48px; }
-.donate button {display:block; margin-top:20px;}
+.donate button {display:block; margin-top:20px; background-color:#f22; color:#fff; border:1px solid #faa; font-size:36px;}
+.donate button:hover {display:block; margin-top:20px; background-color:#f22; color:#000; border:1px solid #faa; font-size:36px;}
 .donate {margin-bottom: 50px;}
 
 
