@@ -5,6 +5,8 @@
  */
 
 
+var onYouTubePlayerAPIReady, ytPlayer;
+
 
 var encode = function (str) {
   return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, "%2A");
@@ -88,8 +90,50 @@ function init() {
 
 }
 
-
 $(document).ready(function () {
+  
+  
+  var videoWidth, videoHeight;
+  var loadVideo = function () {
+    if ($("#ytplayer") == null) {
+      return false;
+    }
+    var videoId = 'hzusZhB9Uyw';
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    onYouTubePlayerAPIReady = function () {
+      ytPlayer = new YT.Player('ytplayer', {
+        height: videoHeight,
+        width: videoWidth,
+        videoId: videoId,
+        playerVars: { 'autoplay': 1, 'controls': 0 }
+      });
+    }
+  }
+  
+  var sizeVideo = function () {
+    var h = $(window).height() - 70;
+    var w = $(window).width();
+    var videoRatio = 390/640;
+    if ((w*videoRatio) > h) {
+      videoWidth = h / videoRatio;
+      videoHeight = h;
+    }
+    else {
+      videoWidth = w;
+      videoHeight = w * videoRatio;
+    }
+    $(".fullscreen-ad .container").css("padding-left", ((w-videoWidth)/2));
+  }
+  
+  sizeVideo();
+  loadVideo();
   
   var isMobile = $(".navbar-nav>li>a").attr("padding-top") === "10px"
   
@@ -108,6 +152,12 @@ $(document).ready(function () {
   });
   
   var scrollNext = function () {
+    
+    //don't autoscroll if the video is paused, playing, buffering, or hasn't started
+    if ((ytPlayer.getPlayerState() == 1) || (ytPlayer.getPlayerState() == -1) || (ytPlayer.getPlayerState() == 2) || (ytPlayer.getPlayerState() == 3)) {
+      timeoutHandle = setTimeout(scrollNext, panelTimeout);
+      return;
+    }
     
     var advanceCursor = function () {
       panelCursor++;
