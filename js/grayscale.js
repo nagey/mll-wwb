@@ -5,7 +5,7 @@
  */
 
 
-var onYouTubePlayerAPIReady, ytPlayer;
+var onYouTubePlayerAPIReady, ytPlayer, onStateChange, scrollNext;
 
 
 var encode = function (str) {
@@ -91,50 +91,7 @@ function init() {
 }
 
 $(document).ready(function () {
-  
-  
-  var videoWidth, videoHeight;
-  var loadVideo = function () {
-    if ($("#ytplayer") == null) {
-      return false;
-    }
-    var videoId = 'hzusZhB9Uyw';
-    // Load the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/player_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // Replace the 'ytplayer' element with an <iframe> and
-    // YouTube player after the API code downloads.
-    onYouTubePlayerAPIReady = function () {
-      ytPlayer = new YT.Player('ytplayer', {
-        height: videoHeight,
-        width: videoWidth,
-        videoId: videoId,
-        playerVars: { 'autoplay': 1, 'controls': 0 }
-      });
-    }
-  }
-  
-  var sizeVideo = function () {
-    var h = $(window).height() - 70;
-    var w = $(window).width();
-    var videoRatio = 390/640;
-    if ((w*videoRatio) > h) {
-      videoWidth = h / videoRatio;
-      videoHeight = h;
-    }
-    else {
-      videoWidth = w;
-      videoHeight = w * videoRatio;
-    }
-    $(".fullscreen-ad .container").css("padding-left", ((w-videoWidth)/2));
-  }
-  
-  sizeVideo();
-  loadVideo();
-  
   var isMobile = $(".navbar-nav>li>a").attr("padding-top") === "10px"
   
   var panels = [];
@@ -151,7 +108,7 @@ $(document).ready(function () {
     clearTimeout(timeoutHandle);
   });
   
-  var scrollNext = function () {
+  scrollNext = function () {
     
     //don't autoscroll if the video is paused, playing, buffering, or hasn't started
     if (ytPlayer.getPlayerState != undefined) {
@@ -243,5 +200,54 @@ $(document).ready(function () {
     gaTrack("donation", "submit", location.pathname, $("#donation-amount").val());
     $(".donate form").submit();
   });
+  
+  var videoWidth, videoHeight;
+  var loadVideo = function () {
+    if ($("#ytplayer") == null) {
+      return false;
+    }
+    var videoId = 'hzusZhB9Uyw';
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    onYouTubePlayerAPIReady = function () {
+      ytPlayer = new YT.Player('ytplayer', {
+        height: videoHeight,
+        width: videoWidth,
+        videoId: videoId,
+        playerVars: { 'autoplay': 1, 'controls': 1, 'modestbranding': 1 },
+        events: { 'onStateChange': onStateChange }
+      });
+    }
+    
+    onStateChange = function (event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        scrollNext();
+      }
+    }
+  }
+  
+  var sizeVideo = function () {
+    var h = $(window).height() - 70;
+    var w = $(window).width();
+    var videoRatio = 390/640;
+    if ((w*videoRatio) > h) {
+      videoWidth = h / videoRatio;
+      videoHeight = h;
+    }
+    else {
+      videoWidth = w;
+      videoHeight = w * videoRatio;
+    }
+    $(".fullscreen-ad .container").css("padding-left", ((w-videoWidth)/2));
+  }
+  
+  sizeVideo();
+  loadVideo();
   
 });
