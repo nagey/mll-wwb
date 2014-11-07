@@ -154,9 +154,11 @@ $(document).ready(function () {
   var scrollNext = function () {
     
     //don't autoscroll if the video is paused, playing, buffering, or hasn't started
-    if ((ytPlayer.getPlayerState() == 1) || (ytPlayer.getPlayerState() == -1) || (ytPlayer.getPlayerState() == 2) || (ytPlayer.getPlayerState() == 3)) {
-      timeoutHandle = setTimeout(scrollNext, panelTimeout);
-      return;
+    if (ytPlayer.getPlayerState != undefined) {
+      if ((ytPlayer.getPlayerState() == 1) || (ytPlayer.getPlayerState() == -1) || (ytPlayer.getPlayerState() == 2) || (ytPlayer.getPlayerState() == 3)) {
+        timeoutHandle = setTimeout(scrollNext, panelTimeout);
+        return;
+      }
     }
     
     var advanceCursor = function () {
