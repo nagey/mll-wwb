@@ -12,8 +12,16 @@ var encode = function (str) {
   return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, "%2A");
 }
 
+var trackerInit = false;
 var gaTrack = function (category, action, label, value) {
   if ((typeof ga) === "function") {
+    if (!trackerInit) {
+      // create tracking id for onpage stuff…
+      ga("create",ga.getAll()[0].a.data.B[":trackingId"]);
+      ga("require", "linker");
+      trackerInit = true;
+    }
+    
     ga("send", "event", category, action, label, value);
   }
   console.log("Category: "+category+", Action: "+action+", Label: "+label+", Value: "+value);
